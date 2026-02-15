@@ -3,8 +3,10 @@ import Button from "../UI/button";
 import product from "../Data/product";
 import ProductCard from "../UI/productcard";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function ProductDisplay() {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
 
@@ -16,10 +18,15 @@ export default function ProductDisplay() {
     setCartItems([...cartItems, item]);
   };
 
+  const handleProductClick = (id) => {
+    navigate(`/singleproduct/${id}`);
+    console.log("Product clicked:", item);
+  };
+
   return (
     <div className="w-full bg-[#F3F4F6] flex flex-col justify-center items-center gap-[50px] py-20 font-Inter">
       <h1 className="text-[32px] font-bold font-Inter">Chef's Specials</h1>
-      <div className="text-4xl">{count}</div>
+      {/* <div className="text-4xl">{count}</div> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px] justify-items-center mx-auto max-w-7xl w-full my-10 px-4 z-30">
         {product.map((item) => (
           <ProductCard
@@ -29,7 +36,8 @@ export default function ProductDisplay() {
             <img
               src={item.image}
               alt={item.name}
-              className="w-full h-[250px] object-cover object-fit-cover rounded-t-md"
+              onClick={() => handleProductClick(item.id)}
+              className="w-full h-[250px] object-cover object-fit-cover rounded-t-md cursor-pointer"
             />
             <div className="p-4 flex flex-col justify-center min-h-[150px] text-left">
               <h2 className="text-[24px] font-semibold text-black text-left font-Inter">
