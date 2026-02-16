@@ -20,13 +20,11 @@ export default function Hero() {
       <div className="absolute bottom-0 inset-x-0 flex justify-center items-center">
         <div className="relative">
           {" "}
-          {/* Wrapper for the input and icon */}
           <input
             type="text"
             placeholder="What are you craving for today?"
             className="bg-white w-[700px] py-3 rounded-md text-gray-700 font-bold font-Inter px-20 focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
           />
-          {/* Position icon relative to the input wrapper, not the whole screen */}
           <img
             src={Search}
             className="absolute left-6 top-1/2 -translate-y-1/2 w-[35px]"

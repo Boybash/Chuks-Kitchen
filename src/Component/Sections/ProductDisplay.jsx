@@ -4,9 +4,11 @@ import product from "../Data/product";
 import ProductCard from "../UI/productcard";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useCart } from "../Context/Context";
 
 export default function ProductDisplay() {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
 
@@ -50,7 +52,10 @@ export default function ProductDisplay() {
                 {item.price}
               </p>
               <Button
-                onClick={handleIncrement}
+                onClick={() => {
+                  addToCart(item);
+                  handleAddToCart(item);
+                }}
                 className="bg-[#FF7A18] text-white px-4 py-2 rounded-md"
               >
                 Add to Cart
