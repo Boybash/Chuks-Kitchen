@@ -13,6 +13,9 @@ import WelcomePage from "./Component/Pages/WelcomePage";
 import SingleProductPage from "./Component/Pages/SingleProductPage";
 import OrderPage from "./Component/Pages/OrderPage";
 import OrderSummaryPage from "./Component/Pages/OrderSummaryPage";
+import DeliveryDetailsPage from "./Component/Pages/DeliveryDetailsPage";
+import PaymentPage from "./Component/Pages/PaymentPage";
+import OrderCompletionPage from "./Component/Pages/OrderCompletionPage";
 
 function App() {
   const location = useLocation();
@@ -30,6 +33,9 @@ function App() {
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/orderpage" element={<OrderPage />} />
         <Route path="/ordersummary" element={<OrderSummaryPage />} />
+        <Route path="/deliverydetails" element={<DeliveryDetailsPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/ordercomplete" element={<OrderCompletionPage />} />
         <Route
           path="/singleproduct/:productid"
           element={<SingleProductPage />}

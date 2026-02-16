@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useCart } from "../Context/Context";
 import { useLocation } from "react-router";
 import Button from "../UI/button";
+import { Link } from "react-router";
 
 export default function OrderSummaryPage() {
   const { cart } = useCart();
@@ -33,7 +34,7 @@ export default function OrderSummaryPage() {
 
         {/* Promo Code Section */}
         <div className="mb-8">
-          <p className="text-gray-600 font-medium mb-2">Add a Promo Code</p>
+          <p className=" mb-2 text-[24px] font-medium">Add a Promo Code</p>
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -78,7 +79,7 @@ export default function OrderSummaryPage() {
           <Button className="flex-1 bg-[#FF7A18] text-white py-3 rounded-md font-bold shadow-md shadow-orange-100">
             Delivery
           </Button>
-          <Button className="flex-1 bg-[#E0E0E0] text-gray-600 py-3 rounded-md font-bold hover:bg-gray-300">
+          <Button className=" bg-[#BDBDBD] flex-1 text-white py-3 rounded-md font-bold">
             Pick up
           </Button>
         </div>
@@ -95,9 +96,11 @@ export default function OrderSummaryPage() {
         </div>
 
         {/* Final CTA */}
-        <button className="mt-10 bg-[#FF7A18] text-white w-full py-4 rounded-xl font-extrabold text-lg hover:bg-[#e66a15] transition-all transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-orange-200">
-          Proceed to Checkout
-        </button>
+        <Link to="/deliverydetails">
+          <Button className="mt-10 bg-[#FF7A18] text-white w-full py-4 rounded-xl font-extrabold text-lg hover:bg-[#e66a15] transition-all transform hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-orange-200">
+            Proceed to Checkout
+          </Button>
+        </Link>
       </div>
     </div>
   );
