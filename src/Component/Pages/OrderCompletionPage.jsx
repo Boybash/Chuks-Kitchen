@@ -1,8 +1,13 @@
 import React from "react";
 import CheckIcon from "../../assets/Check icon.png";
 import Button from "../UI/button";
+import { useEffect } from "react";
 
 export default function OrderCompletionPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="w-full min-h-screen bg-[#F3F4F6] font-Inter py-10">
       <div className="max-w-2xl mx-auto bg-white py-10 px-8 md:px-12 rounded-2xl shadow-sm border border-gray-100 text-center">
