@@ -1,8 +1,16 @@
 import React from "react";
 import Button from "../UI/button";
 import Search from "../../assets/search-sm.png";
+import { SearchContext } from "../Context/SearchContext";
+import { useContext } from "react";
 
 export default function Hero() {
+  const { setSearchTerm } = useContext(SearchContext);
+
+  function handleSearch(e) {
+    setSearchTerm(e.target.value);
+  }
+
   return (
     <div className="bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url('src/assets/Welcome.png')] bg-cover bg-center w-full h-[941px] relative">
       <div className="flex flex-col justify-between  font-bold text-white text-center gap-5 ml-[48px] pt-[200px]">
@@ -16,18 +24,19 @@ export default function Hero() {
 
         <Button className="w-[215px]">Discover what's new</Button>
       </div>
-      {/* Remove w-full and left-10, use inset-x-0 */}
-      <div className="absolute bottom-0 inset-x-0 flex justify-center items-center">
+      {/* Change bottom-0 to -bottom-6 or use translate to overlap */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 z-10">
         <div className="relative">
-          {" "}
           <input
+            onChange={handleSearch}
             type="text"
             placeholder="What are you craving for today?"
-            className="bg-white w-[700px] py-3 rounded-md text-gray-700 font-bold font-Inter px-20 focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+            className="bg-white w-[700px] py-4 rounded-md text-gray-700 font-bold font-Inter px-20 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#FF7A18] border border-gray-100"
           />
           <img
             src={Search}
-            className="absolute left-6 top-1/2 -translate-y-1/2 w-[35px]"
+            alt="search"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-[40px]"
           />
         </div>
       </div>

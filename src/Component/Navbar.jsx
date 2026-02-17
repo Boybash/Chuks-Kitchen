@@ -11,6 +11,11 @@ export default function Navbar() {
     0,
   );
 
+  const scrollToProduct = () => {
+    const skillsSection = document.getElementById("product");
+    skillsSection.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <nav className="bg-white p-2 text-white flex justify-around items-center gap- w-full sticky top-0 z-50">
       <Link to="/">
@@ -19,10 +24,13 @@ export default function Navbar() {
         </div>
       </Link>
       <div className=" text-black flex justify-between items-center gap-40 ml-10 font-Inter text-[16px]">
-        <a href="#" className="hover:text-[#FF7A18] text-[16px]">
+        <Link to="/" className="hover:text-[#FF7A18] text-[16px]">
           Home
-        </a>
-        <a href="#" className="hover:text-[#FF7A18] text-[16px]">
+        </Link>
+        <a
+          onClick={scrollToProduct}
+          className="hover:text-[#FF7A18] text-[16px] cursor-pointer"
+        >
           Explore
         </a>
         <Link

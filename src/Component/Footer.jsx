@@ -3,7 +3,7 @@ import uparrow from "../assets/Up arrow.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FF7A18]/30 p-5 w-full flex justify-around items-start gap-10 py-[69px] relative">
+    <footer className="bg-[#FF7A184D] p-5 w-full flex justify-around items-start gap-10 py-[69px] relative">
       <div>
         <h1 className="text-2xl font-bold text-[#FF7A18] font-IslandMoments text-[40px]">
           Chuks Kitchen{" "}
