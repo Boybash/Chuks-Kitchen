@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { useCart } from "../Context/Context"; // Ensure path is correct
+import React, { useState, useEffect } from "react";
+import { useCart } from "../Context/Context";
 import Button from "../UI/button";
 import Loading from "../../assets/Loading.png";
-import { Link } from "react-router";
-import { useLocation } from "react-router";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export default function PaymentPage() {
   const { cart } = useCart();
@@ -38,13 +35,9 @@ export default function PaymentPage() {
   if (isProcessing) {
     return (
       <div className="w-full h-screen bg-[#F3F4F6] font-Inter py-10 px-4 flex flex-col justify-center items-center">
-        <div className="w-full max-w-2xl mx-auto mt-10">
-          <img
-            src={Loading}
-            alt="Loading"
-            className="w-16 h-16 mx-auto mt-10 animate-spin"
-          />
-          <p className="text-center text-gray-600 mt-4 text-lg">
+        <div className="w-full max-w-2xl mx-auto flex flex-col items-center">
+          <img src={Loading} alt="Loading" className="w-16 h-16 animate-spin" />
+          <p className="text-center text-gray-600 mt-6 text-lg font-medium">
             Processing your payment, please wait...
           </p>
         </div>
@@ -53,16 +46,20 @@ export default function PaymentPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#F3F4F6] font-Inter py-10 px-4">
-      <div
-        className={`${isProcessing ? "hidden" : ""} max-w-2xl mx-auto bg-white py-10 px-8 md:px-12 rounded-2xl shadow-sm border border-gray-100`}
-      >
+    <div className="w-full min-h-screen bg-[#F3F4F6] font-Inter py-6 md:py-10 px-4">
+      <div className="max-w-2xl mx-auto bg-white py-8 md:py-10 px-4 sm:px-8 md:px-12 rounded-2xl shadow-sm border border-gray-100">
         <div className="flex justify-between items-center mb-2">
-          <h1 className="text-[32px] font-bold text-gray-800">Payment</h1>
+          <h1 className="text-2xl md:text-[32px] font-bold text-gray-800">
+            Payment
+          </h1>
         </div>
         <hr className="my-4 border-gray-200" />
-        <p className="text-gray-600 text-lg mb-4 font-medium">Pay With:</p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+
+        <p className="text-gray-600 text-base md:text-lg mb-4 font-medium">
+          Pay With:
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-8">
           {["card", "bank", "transfer"].map((method) => (
             <label
               key={method}
@@ -77,6 +74,7 @@ export default function PaymentPage() {
               </span>
               <input
                 type="radio"
+                name="paymentMethod"
                 checked={paymentMethod === method}
                 onChange={() => setPaymentMethod(method)}
                 className="w-4 h-4 accent-[#FF7A18]"
@@ -87,7 +85,7 @@ export default function PaymentPage() {
 
         <div className="space-y-6">
           {paymentMethod === "card" && (
-            <>
+            <div className="space-y-4 animate-in fade-in duration-300">
               <div>
                 <label className="block mb-2 font-semibold text-gray-700">
                   Card Number
@@ -99,7 +97,7 @@ export default function PaymentPage() {
                 />
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <label className="block mb-2 font-semibold text-gray-700">
                     Expiration
@@ -122,33 +120,42 @@ export default function PaymentPage() {
                 </div>
               </div>
 
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-3 items-center pt-2">
                 <input
                   type="checkbox"
-                  id="save card"
-                  className="w-[16px] h-[16px]"
+                  id="save-card"
+                  className="w-5 h-5 accent-[#FF7A18] cursor-pointer"
                 />
                 <label
-                  htmlFor="save card"
-                  className="block text-center  text-gray-700"
+                  htmlFor="save-card"
+                  className="text-sm md:text-base text-gray-700 cursor-pointer"
                 >
-                  Save card details
+                  Save card details for future orders
                 </label>
               </div>
-            </>
+            </div>
           )}
 
-          {/* THE BUTTON: Now includes the grand total */}
+          {paymentMethod !== "card" && (
+            <div className="p-6 bg-gray-50 rounded-lg border border-dashed border-gray-300 text-center">
+              <p className="text-gray-600">
+                Instruction for {paymentMethod} payment will be shown on the
+                next step.
+              </p>
+            </div>
+          )}
+
           <Button
             onClick={handlePayment}
-            className="mt-4 bg-[#FF7A18] text-white w-full py-4 rounded-xl font-extrabold text-lg hover:bg-[#e66a15] transition-all shadow-lg shadow-orange-100 flex justify-center items-center gap-2"
+            className="mt-6 bg-[#FF7A18] text-white w-full py-4 rounded-xl font-extrabold text-lg hover:bg-[#e66a15] transition-all shadow-lg shadow-orange-100 flex justify-center items-center gap-2 active:scale-[0.98]"
           >
             Pay ₦{grandTotal.toLocaleString()}
           </Button>
 
-          <p className="text-xs text-gray-400 text-center leading-relaxed px-4">
+          <p className="text-[11px] md:text-xs text-gray-400 text-center leading-relaxed px-2">
             Your personal data will be used to process your order and support
-            your experience. See our privacy policy.
+            your experience. See our{" "}
+            <span className="underline cursor-pointer">privacy policy</span>.
           </p>
         </div>
       </div>

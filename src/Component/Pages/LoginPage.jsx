@@ -1,7 +1,6 @@
 import React from "react";
-import LoginImage from "../../assets/loginimage.png";
 import Button from "../UI/button";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/Facebook.png";
 import mailicon from "../../assets/mailicon.svg";
@@ -10,72 +9,78 @@ import eyeicons from "../../assets/eyeicons.png";
 import { useEffect } from "react";
 
 export default function LoginPage() {
+  const location = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url('/src/assets/loginimage.png')] bg-cover bg-center w-[710px] h-screen relative hidden lg:block">
+    <div className="w-full min-h-screen flex justify-center items-center bg-[#F3F4F6]">
+      <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url('/src/assets/loginimage.png')] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
         <div className="font-Inter flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full px-10">
           <h1 className="text-[48px] font-bold text-white text-center">
             Chuks Kitchen
           </h1>
-          <p className="w-[404px] text-center text-white text-[16px]">
+          <p className="max-w-[404px] text-center text-white text-[16px]">
             Your journey to delicious, authentic Nigerian meals starts here.
             Sign up or log in to order your favorites today!
           </p>
         </div>
       </div>
 
-      <div className="bg-[#F3F4F6] flex-1 h-screen flex flex-col justify-center items-center p-8">
+      <div className="flex-1 min-h-screen flex flex-col justify-center items-center p-4 sm:p-8">
         <div className="flex flex-col justify-center items-center mb-6">
           <h1 className="text-[#FF7A18] font-IslandMoments text-[40px] font-bold">
             Chuks Kitchen
           </h1>
-          <h2 className="font-Inter text-[24px] font-bold">
+          <h2 className="font-Inter text-[20px] sm:text-[24px] font-bold">
             Login Your Account
           </h2>
         </div>
 
-        <form className="font-Inter w-[450px]">
+        <form className="font-Inter w-full max-w-[450px]">
           <div className="mb-4 relative">
             <label htmlFor="email" className="block text-gray-700 mb-2">
               Email or Phone Number
             </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="name@gmail.com"
-              className="w-full h-[54px] px-15 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-            />
-            <img
-              src={mailicon}
-              alt="Mail Icon"
-              className="w-5 h-5 absolute left-3 top-[70%] -translate-y-[50%]"
-            />
+            <div className="relative">
+              <input
+                type="email"
+                id="email"
+                placeholder="name@gmail.com"
+                className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+              />
+              <img
+                src={mailicon}
+                alt="Mail Icon"
+                className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
+              />
+            </div>
           </div>
 
-          <div className="mb-6 relative">
+          <div className="mb-6">
             <label htmlFor="password" className="block text-gray-700 mb-2">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="*******"
-              className="w-full h-[54px] px-15 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-            />
-            <img
-              src={lockicon}
-              alt="Lock Icon"
-              className="w-5 h-5 absolute left-3 top-[50%] -translate-y-[50%]"
-            />
-            <img
-              src={eyeicons}
-              alt="Eye Icon"
-              className="w-5 h-5 absolute right-3 top-[52%] -translate-y-[50%] cursor-pointer"
-            />
+            <div className="relative">
+              <input
+                type="password"
+                id="password"
+                placeholder="*******"
+                className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+              />
+              <img
+                src={lockicon}
+                alt="Lock Icon"
+                className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
+              />
+              <img
+                src={eyeicons}
+                alt="Eye Icon"
+                className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+              />
+            </div>
             <p className="text-right text-blue-500 mt-2 cursor-pointer text-sm">
               Forgot Password?
             </p>
@@ -89,33 +94,26 @@ export default function LoginPage() {
           </Button>
 
           <p className="text-center my-6 text-gray-500">or continue with</p>
+
           <div className="flex flex-col gap-4">
             <div className="relative">
-              <Button className="w-full h-[54px] bg-[#FFFFFF] text-black py-2 rounded-md border border-black hover:bg-gray-50">
+              <Button className="w-full h-[54px] bg-[#FFFFFF] text-black py-2 rounded-md border border-black hover:bg-gray-50 flex items-center justify-center gap-3">
+                <img src={Google} alt="Google" className="w-5 h-5" />
                 Continue with Google
               </Button>
-              <img
-                src={Google}
-                alt="Google"
-                className="w-5 h-5 absolute left-23 top-1/2 -translate-y-1/2"
-              />
             </div>
 
             <div className="relative">
-              <Button className="w-full h-[54px] bg-[#FFFFFF] text-black py-2 rounded-md border border-black hover:bg-gray-50">
+              <Button className="w-full h-[54px] bg-[#FFFFFF] text-black py-2 rounded-md border border-black hover:bg-gray-50 flex items-center justify-center gap-3">
+                <img src={Facebook} alt="Facebook" className="w-6 h-6" />
                 Continue with Facebook
               </Button>
-              <img
-                src={Facebook}
-                alt="Facebook"
-                className="w-10 h-10 absolute left-20 top-1/2 -translate-y-1/2"
-              />
             </div>
-            <p className="text-center">
+
+            <p className="text-center text-sm sm:text-base mt-2">
               Don't have an account?{" "}
               <Link to="/signup">
-                <span className="text-blue-400 cursor-pointer">
-                  {" "}
+                <span className="text-blue-500 font-semibold cursor-pointer">
                   Create an account
                 </span>
               </Link>
