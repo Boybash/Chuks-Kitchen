@@ -57,7 +57,7 @@ export default function Navbar() {
 
         <div className="hidden md:block">
           <Link to="/login">
-            <Button className="w-[120px]">Login</Button>
+            <Button className="w-[120px] text-white font-bold">Login</Button>
           </Link>
         </div>
 

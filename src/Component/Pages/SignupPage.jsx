@@ -17,7 +17,7 @@ export default function SignupPage() {
   }, [location]);
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center overflow-x-hidden bg-[#F3F4F6]">
+    <div className="w-full h-screen flex justify-center items-center overflow-hidden bg-[#F3F4F6]">
       {/* LEFT SIDE: BANNER */}
       <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url('/src/assets/loginimage.png')] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
         <div className="font-Inter flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full px-10">
@@ -32,9 +32,9 @@ export default function SignupPage() {
       </div>
 
       {/* RIGHT SIDE: FORM */}
-      <div className="flex-1 min-h-screen flex flex-col justify-center items-center p-4 sm:p-8 md:p-12 overflow-y-auto">
-        <div className="flex flex-col justify-center items-center text-center mb-6">
-          <h1 className="text-[#FF7A18] font-IslandMoments text-[40px] font-bold leading-none">
+      <div className="flex-1 h-screen flex flex-col  items-center p-4 sm:p-8 md:p-12 overflow-y-auto">
+        <div className="flex flex-col justify-center items-center text-center py-2">
+          <h1 className="text-[#FF7A18] font-IslandMoments text-[40px] font-bold">
             Chuks Kitchen
           </h1>
           <h2 className="font-Inter text-[20px] sm:text-[24px] font-bold">

@@ -87,7 +87,7 @@ export default function WelcomePage() {
             </Button>
           </div>
 
-          <div className="mt-8 sm:mt-12 border-t border-gray-200 pt-6">
+          <div className="mt-8 sm:mt-12 border-t border-gray-200 pt-6 flex flex-col justify-between items-center">
             <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
               © 2024 Chuks Kitchen.{" "}
               <span className="text-[#1E88E5] cursor-pointer hover:underline block sm:inline mt-1 sm:mt-0">

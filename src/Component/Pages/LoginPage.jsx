@@ -7,6 +7,7 @@ import mailicon from "../../assets/mailicon.svg";
 import lockicon from "../../assets/lockicon.svg";
 import eyeicons from "../../assets/eyeicons.png";
 import { useEffect } from "react";
+import * as yup from "yup";
 
 export default function LoginPage() {
   const location = useLocation();
@@ -16,7 +17,7 @@ export default function LoginPage() {
   }, [location]);
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center bg-[#F3F4F6]">
+    <div className="w-full h-screen flex justify-center items-center overflow-hidden bg-[#F3F4F6]">
       <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url('/src/assets/loginimage.png')] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
         <div className="font-Inter flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full px-10">
           <h1 className="text-[48px] font-bold text-white text-center">

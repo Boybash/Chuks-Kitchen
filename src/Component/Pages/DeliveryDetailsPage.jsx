@@ -1,11 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../UI/button";
 import { Link } from "react-router";
 import { useLocation } from "react-router";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { deliverySchema } from "../Validations/Validations";
 
 export default function DeliveryDetailsPage() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    delievryDetails: "",
+    deliveryTime: "",
+    deliveryInstructions: "",
+    contactAdress: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleContinue = async (e) => {
+    e.preventDefault();
+    try {
+      // Validate all fields
+      await deliverySchema.validate(formData, { abortEarly: false });
+      setErrors({});
+      navigate("/payment"); // Navigate if successful
+    } catch (err) {
+      const validationErrors = {};
+      err.inner.forEach((error) => {
+        validationErrors[error.path] = error.message;
+      });
+      setErrors(validationErrors);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,12 +43,20 @@ export default function DeliveryDetailsPage() {
           Delivery Details
         </h1>
         <hr className="my-4 border-gray-200" />
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleContinue}>
           <div>
             <textarea
               placeholder="Your Delivery Details"
               className="w-full h-28 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18] resize-none"
+              onChange={(e) =>
+                setFormData({ ...formData, delievryDetails: e.target.value })
+              }
             />
+            {errors.delievryDetails && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.delievryDetails}
+              </p>
+            )}
           </div>
           <div>
             <label className="block  mb-2 font-semibold text-[20px]">
@@ -32,7 +66,13 @@ export default function DeliveryDetailsPage() {
               type="text"
               placeholder="Enter Delivery Time"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+              onChange={(e) =>
+                setFormData({ ...formData, deliveryTime: e.target.value })
+              }
             />
+            {errors.deliveryTime && (
+              <p className="text-red-500 text-sm mt-1">{errors.deliveryTime}</p>
+            )}
           </div>
           <div>
             <label className="block  mb-2 font-semibold text-[20px]">
@@ -41,7 +81,18 @@ export default function DeliveryDetailsPage() {
             <textarea
               placeholder="Enter Any Specific Instructions for Delivery"
               className="w-full h-20 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18] resize-none"
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  deliveryInstructions: e.target.value,
+                })
+              }
             />
+            {errors.deliveryInstructions && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.deliveryInstructions}
+              </p>
+            )}
           </div>
           <div>
             <label className="block  mb-2 font-semibold text-[20px]">
@@ -51,10 +102,21 @@ export default function DeliveryDetailsPage() {
               type="text"
               placeholder="Enter Your Contact Address"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+              onChange={(e) =>
+                setFormData({ ...formData, contactAdress: e.target.value })
+              }
             />
+            {errors.contactAdress && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.contactAdress}
+              </p>
+            )}
           </div>
           <Link to="/payment">
-            <Button className="w-full bg-[#FF7A18] text-white py-3 rounded-md font-bold hover:bg-[#e66a15]">
+            <Button
+              type="submit"
+              className="w-full bg-[#FF7A18] text-white py-3 rounded-md font-bold hover:bg-[#e66a15]"
+            >
               Continue to Payment
             </Button>
           </Link>
