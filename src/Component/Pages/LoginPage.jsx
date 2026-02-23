@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../UI/button";
 import { Link, useLocation } from "react-router";
 import Google from "../../assets/google.png";
@@ -6,11 +6,38 @@ import Facebook from "../../assets/Facebook.png";
 import mailicon from "../../assets/mailicon.svg";
 import lockicon from "../../assets/lockicon.svg";
 import eyeicons from "../../assets/eyeicons.png";
+import eyeicons2 from "../../assets/eyeicons2.png"
 import { useEffect } from "react";
-import * as yup from "yup";
+import { loginSchema } from "../Validations/Validations";
+import { useNavigate } from "react-router";
 
 export default function LoginPage() {
   const location = useLocation();
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  })
+  const [errors, setErrors] = useState({})
+    const [showPasword, setShowPassword] = useState(false);
+
+  const handleContinue = async (e) => {
+    e.preventDefault();
+    try {
+      await loginSchema.validate(formData, {abortEarly: false})
+      navigate("/")
+    } catch (err) {
+     const validationsError = {}
+     err.inner.forEach((error) => {
+      validationsError[error.path] = error.message
+     })
+     setErrors(validationsError)
+    }
+  }
+
+ function togglePasswordVisibility() {
+    setShowPassword(!showPasword);
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,7 +67,7 @@ export default function LoginPage() {
           </h2>
         </div>
 
-        <form className="font-Inter w-full max-w-[450px]">
+        <form onSubmit={handleContinue} className="font-Inter w-full max-w-[450px]">
           <div className="mb-4 relative">
             <label htmlFor="email" className="block text-gray-700 mb-2">
               Email or Phone Number
@@ -51,6 +78,7 @@ export default function LoginPage() {
                 id="email"
                 placeholder="name@gmail.com"
                 className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
               <img
                 src={mailicon}
@@ -58,6 +86,7 @@ export default function LoginPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
               />
             </div>
+            {errors.email && (<p className="text-red-500 text-sm mt-1">{errors.email}</p>)}
           </div>
 
           <div className="mb-6">
@@ -66,10 +95,12 @@ export default function LoginPage() {
             </label>
             <div className="relative">
               <input
-                type="password"
+                type={`${showPasword ? "text" : "password"}`}
                 id="password"
                 placeholder="*******"
                 className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+
               />
               <img
                 src={lockicon}
@@ -77,11 +108,13 @@ export default function LoginPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
               />
               <img
-                src={eyeicons}
+               onClick={togglePasswordVisibility}
+                src={`${showPasword ? eyeicons : eyeicons2}`}
                 alt="Eye Icon"
                 className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
               />
             </div>
+            {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password}</p>)}
             <p className="text-right text-blue-500 mt-2 cursor-pointer text-sm">
               Forgot Password?
             </p>
@@ -111,7 +144,7 @@ export default function LoginPage() {
               </Button>
             </div>
 
-            <p className="text-center text-sm sm:text-base mt-2">
+            <p className="text-center text-sm sm:text-base my-5">
               Don't have an account?{" "}
               <Link to="/signup">
                 <span className="text-blue-500 font-semibold cursor-pointer">

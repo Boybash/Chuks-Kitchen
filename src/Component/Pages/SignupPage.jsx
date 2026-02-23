@@ -1,16 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../UI/button";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/Facebook.png";
 import mailicon from "../../assets/mailicon.svg";
 import lockicon from "../../assets/lockicon.svg";
 import eyeicons from "../../assets/eyeicons.png";
+import eyeicons2 from "../../assets/eyeicons2.png"
 import Phoneicon from "../../assets/phoneicon.png";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router";
+import { signupSchema } from "../Validations/Validations";
+import { useNavigate } from "react-router";
 
 export default function SignupPage() {
   const location = useLocation();
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    terms: "",
+  })
+  const [errors, setErrors] = useState({})
+   const [showPasword, setShowPassword] = useState(false);
+
+  const handleSignUp = async (e) => {
+    e.preventDefault()
+    try {
+      await signupSchema.validate(formData, {abortEarly: false})
+      navigate("/welcome")
+    } catch (err) {
+      const validationsError = {}
+      err.inner.forEach((error) => {
+        validationsError[error.path] = error.message
+      })
+      setErrors(validationsError)
+    }
+  }
+
+  function togglePasswordVisibility() {
+    setShowPassword(!showPasword);
+  }
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,7 +73,7 @@ export default function SignupPage() {
           </h2>
         </div>
 
-        <form className="font-Inter w-full max-w-[450px]">
+        <form onSubmit={handleSignUp} className="font-Inter w-full max-w-[450px]">
           {/* Email */}
           <div className="mb-4">
             <label
@@ -57,6 +88,7 @@ export default function SignupPage() {
                 id="email"
                 placeholder="name@gmail.com"
                 className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
               <img
                 src={mailicon}
@@ -64,6 +96,7 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
             </div>
+            {errors.email && (<p className="text-red-500 text-sm mt-1">{errors.email}</p>)}
           </div>
 
           {/* Phone */}
@@ -80,6 +113,7 @@ export default function SignupPage() {
                 id="phone"
                 placeholder="+234..."
                 className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
               />
               <img
                 src={Phoneicon}
@@ -87,6 +121,8 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
             </div>
+            {errors.phone && (<p className="text-red-500 text-sm mt-1">{errors.phone}</p>)}
+
           </div>
 
           {/* Password */}
@@ -99,10 +135,12 @@ export default function SignupPage() {
             </label>
             <div className="relative">
               <input
-                type="password"
+              type={`${showPasword ? "text" : "password"}`}
                 id="password"
                 placeholder="*******"
                 className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
+
               />
               <img
                 src={lockicon}
@@ -110,11 +148,14 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
               <img
-                src={eyeicons}
+                onClick={togglePasswordVisibility}
+                src={`${showPasword ? eyeicons : eyeicons2}`}
                 alt="Toggle"
                 className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
               />
             </div>
+            {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password}</p>)}
+
           </div>
 
           {/* Confirm Password */}
@@ -127,10 +168,12 @@ export default function SignupPage() {
             </label>
             <div className="relative">
               <input
-                type="password"
+                 type={`${showPasword ? "text" : "password"}`}
                 id="confirmPassword"
                 placeholder="*******"
                 className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+
               />
               <img
                 src={lockicon}
@@ -138,19 +181,23 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
               <img
-                src={eyeicons}
+               onClick={togglePasswordVisibility}
+                src={`${showPasword ? eyeicons : eyeicons2}`}
                 alt="Toggle"
                 className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
               />
             </div>
+            {errors.confirmPassword && (<p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>)}
           </div>
 
           {/* Terms */}
-          <div className="flex items-start gap-2 mb-6">
+          <div >
+            <div className="flex items-start gap-2">
             <input
               type="checkbox"
               id="terms"
               className="mt-1 accent-[#FF7A18] h-4 w-4"
+              onChange={(e) => setFormData({...formData, terms: e.target.checked})}
             />
             <label
               htmlFor="terms"
@@ -165,16 +212,17 @@ export default function SignupPage() {
                 Privacy Policy
               </span>
             </label>
+            </div>
+            {errors.terms && (<p className="text-red-500 text-sm mt-1">{errors.terms}</p>)}
           </div>
 
-          <Link to="/welcome">
+
             <Button
               type="submit"
-              className="w-full h-[54px] bg-[#FF7A18] text-white font-bold rounded-md hover:bg-[#e66a15] transition duration-300"
+              className="w-full h-[54px] bg-[#FF7A18] text-white font-bold rounded-md hover:bg-[#e66a15] transition duration-300 mt-8"
             >
               Continue
             </Button>
-          </Link>
 
           <p className="text-center my-4 text-gray-400 text-sm">
             or continue with

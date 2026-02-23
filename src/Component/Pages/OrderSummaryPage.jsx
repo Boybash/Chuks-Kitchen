@@ -58,12 +58,13 @@ export default function OrderSummaryPage() {
             <p className="mb-2 text-lg md:text-[24px] font-medium">
               Add a Promo Code
             </p>
-            <div className="flex  sm:flex-row items-center gap-3">
+
+            <div className="flex justify-between sm:flex-row items-start gap-3">
               <div className="flex flex-col">
                 <input
                   type="text"
                   placeholder="Enter Code Here"
-                  className="w-[550px] flex-1 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
+                  className="w-full flex-1 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
                   onChange={(e) =>
                     setFormData({ ...formData, promoCode: e.target.value })
                   }
@@ -74,9 +75,11 @@ export default function OrderSummaryPage() {
                   </p>
                 )}
               </div>
-              <Button className="w-full sm:w-auto bg-[#FF7A18] text-white px-8 py-3 rounded-md hover:bg-[#e66a15]">
-                Login
-              </Button>
+              <div>
+                <Button type="button" className=" w-full sm:w-auto bg-[#FF7A18] text-white px-8 py-3 rounded-md hover:bg-[#e66a15]">
+                  Login
+                </Button>
+              </div>
             </div>
           </div>
 

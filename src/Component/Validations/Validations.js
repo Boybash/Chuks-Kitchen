@@ -18,7 +18,7 @@ export const orderSummarySchema = Yup.object().shape({
 });
 
 export const deliverySchema = Yup.object().shape({
-  address: Yup.string()
+  delievryDetails: Yup.string()
     .min(10, "Please provide a more detailed address")
     .required("Contact address is required"),
 
@@ -31,7 +31,7 @@ export const deliverySchema = Yup.object().shape({
     .nullable(),
 
   // Adding a phone field because riders need it!
-  phoneNumber: Yup.string()
+  contactAddress: Yup.string()
     .matches(/^(?:\+234|0)[789]\d{9}$/, "Enter a valid Nigerian phone number")
     .required("Phone number is required"),
 });

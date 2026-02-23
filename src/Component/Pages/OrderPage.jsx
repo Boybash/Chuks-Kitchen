@@ -43,19 +43,21 @@ export default function OrderPage() {
                       alt={item.name}
                       className="w-16 h-16 md:w-24 md:h-24 rounded-lg object-cover bg-gray-100"
                     />
-                    <h3 className="text-lg md:text-xl font-bold text-gray-800">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 ">
                       {item.name}
                     </h3>
                   </div>
 
                   <div className="flex items-center justify-between sm:justify-center md:items-center gap-6 md:gap-10 w-full sm:w-auto">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-10">
                       <button className="bg-[#BDBDBD] h-8 w-8 rounded-md text-sm flex items-center justify-center font-bold">
                         -
                       </button>
+
                       <p className="text-xl md:text-[30px] font-medium">
                         {item.quantity}
                       </p>
+
                       <button className="bg-[#BDBDBD] h-8 w-8 rounded-md text-sm flex items-center justify-center font-bold">
                         +
                       </button>

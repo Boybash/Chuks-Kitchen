@@ -13,14 +13,13 @@ export default function DeliveryDetailsPage() {
     delievryDetails: "",
     deliveryTime: "",
     deliveryInstructions: "",
-    contactAdress: "",
+    contactAddress: "",
   });
   const [errors, setErrors] = useState({});
 
   const handleContinue = async (e) => {
     e.preventDefault();
     try {
-      // Validate all fields
       await deliverySchema.validate(formData, { abortEarly: false });
       setErrors({});
       navigate("/payment"); // Navigate if successful
@@ -36,6 +35,7 @@ export default function DeliveryDetailsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
   return (
     <div className="w-full min-h-screen bg-[#F3F4F6] font-Inter py-10">
       <div className="max-w-3xl mx-auto px-6 bg-white py-10 rounded-2xl shadow-sm border border-gray-100">
@@ -103,23 +103,21 @@ export default function DeliveryDetailsPage() {
               placeholder="Enter Your Contact Address"
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
               onChange={(e) =>
-                setFormData({ ...formData, contactAdress: e.target.value })
+                setFormData({ ...formData, contactAddress: e.target.value })
               }
             />
-            {errors.contactAdress && (
+            {errors.contactAddress && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.contactAdress}
+                {errors.contactAddress}
               </p>
             )}
           </div>
-          <Link to="/payment">
             <Button
               type="submit"
               className="w-full bg-[#FF7A18] text-white py-3 rounded-md font-bold hover:bg-[#e66a15]"
             >
               Continue to Payment
             </Button>
-          </Link>
         </form>
       </div>
     </div>
