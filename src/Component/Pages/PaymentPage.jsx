@@ -11,43 +11,35 @@ export default function PaymentPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const [formData , setFormData] = useState({
+  const [formData, setFormData] = useState({
     cardNumber: "",
     expiryDate: "",
     cvv: "",
+  });
 
-  })
-
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   const handleContinue = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await paymentSchema.validate(formData , {abortEarly: false})
-      setErrors({})
-      setIsProcessing(true)
+      await paymentSchema.validate(formData, { abortEarly: false });
+      setErrors({});
+      setIsProcessing(true);
       setTimeout(() => {
-        navigate("/ordercomplete")
+        navigate("/ordercomplete");
       }, 5000);
     } catch (err) {
       const validationsErrors = {};
       err.inner.forEach((error) => {
-        validationsErrors[error.path] = error.message
-      })
-     setErrors(validationsErrors)
+        validationsErrors[error.path] = error.message;
+      });
+      setErrors(validationsErrors);
     }
-  }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
-
-  // function handlePayment() {
-  //   setIsProcessing(true);
-  //   setTimeout(() => {
-  //     navigate("/ordercomplete");
-  //   }, 5000);
-  // }
 
   const subtotal = cart.reduce((acc, item) => {
     const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, ""));
@@ -74,7 +66,10 @@ export default function PaymentPage() {
 
   return (
     <div className="w-full min-h-screen bg-[#F3F4F6] font-Inter py-6 md:py-10 px-4">
-      <form onSubmit={handleContinue} className="max-w-2xl mx-auto bg-white py-8 md:py-10 px-4 sm:px-8 md:px-12 rounded-2xl shadow-sm border border-gray-100">
+      <form
+        onSubmit={handleContinue}
+        className="max-w-2xl mx-auto bg-white py-8 md:py-10 px-4 sm:px-8 md:px-12 rounded-2xl shadow-sm border border-gray-100"
+      >
         <div className="flex justify-between items-center mb-2">
           <h1 className="text-2xl md:text-[32px] font-bold text-gray-800">
             Payment
@@ -121,9 +116,15 @@ export default function PaymentPage() {
                   type="text"
                   placeholder="0000 0000 0000 0000"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                  onChange={(e) => setFormData({...formData, cardNumber: e.target.value})}
+                  onChange={(e) =>
+                    setFormData({ ...formData, cardNumber: e.target.value })
+                  }
                 />
-               {errors.cardNumber && (<p className="text-red-500 text-sm mt-1">{errors.cardNumber}</p>)}
+                {errors.cardNumber && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.cardNumber}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -135,9 +136,15 @@ export default function PaymentPage() {
                     type="text"
                     placeholder="MM/YY"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                    onChange={(e) => setFormData({...formData, expiryDate: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, expiryDate: e.target.value })
+                    }
                   />
-                  {errors.expiryDate && (<p className="text-red-500 text-sm mt-1">{errors.expiryDate}</p>)}
+                  {errors.expiryDate && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.expiryDate}
+                    </p>
+                  )}
                 </div>
                 <div className="flex-1">
                   <label className="block mb-2 font-semibold text-gray-700">
@@ -147,9 +154,13 @@ export default function PaymentPage() {
                     type="password"
                     placeholder="123"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                    onChange={(e) => setFormData({...formData, cvv: e.target.value})}
+                    onChange={(e) =>
+                      setFormData({ ...formData, cvv: e.target.value })
+                    }
                   />
-                  {errors.cvv && (<p className="text-red-500 text-sm mt-1">{errors.cvv}</p>)}
+                  {errors.cvv && (
+                    <p className="text-red-500 text-sm mt-1">{errors.cvv}</p>
+                  )}
                 </div>
               </div>
 
@@ -179,7 +190,7 @@ export default function PaymentPage() {
           )}
 
           <Button
-          type="submit"
+            type="submit"
             className="mt-6 bg-[#FF7A18] text-white w-full py-4 rounded-xl font-extrabold text-lg hover:bg-[#e66a15] transition-all shadow-lg shadow-orange-100 flex justify-center items-center gap-2 active:scale-[0.98]"
           >
             Pay ₦{grandTotal.toLocaleString()}

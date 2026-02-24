@@ -24,15 +24,15 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-white p-2 text-black w-full sticky top-0 z-50 shadow-sm">
+    <header className="bg-white p-2 text-black w-full sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link to="/">
-          <div className="text-[#FF7A18] font-IslandMoments text-[32px] md:text-[40px] font-bold">
+          <div className="text-[#FF7A18] font-IslandMoments text-[32px] md:text-[40px] font-semibold">
             Chuks Kitchen
           </div>
         </Link>
 
-        <div className="hidden md:flex items-center gap-30 font-Inter text-[16px]">
+        <div className="max-[1100px]:hidden flex items-center gap-30 font-Inter text-[16px]">
           <Link to="/" className="hover:text-[#FF7A18]">
             Home
           </Link>
@@ -55,13 +55,13 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="hidden md:block">
+        <div className="max-[1100px]:hidden block">
           <Link to="/login">
             <Button className="w-[120px] text-white font-bold">Login</Button>
           </Link>
         </div>
 
-        <div className="md:hidden flex items-center">
+        <div className="hidden max-[1100px]:flex items-center">
           <button
             onClick={toggleMenu}
             className="text-[#FF7A18] focus:outline-none"
@@ -72,7 +72,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-white border-t mt-2 flex flex-col p-4 gap-4 font-Inter">
+        <div className="max-[1100px]:flex bg-white border-t mt-2  flex-col p-4 gap-4 font-Inter">
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
@@ -106,6 +106,6 @@ export default function Navbar() {
           </Link>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

@@ -76,7 +76,10 @@ export default function OrderSummaryPage() {
                 )}
               </div>
               <div>
-                <Button type="button" className=" w-full sm:w-auto bg-[#FF7A18] text-white px-8 py-3 rounded-md hover:bg-[#e66a15]">
+                <Button
+                  type="button"
+                  className=" w-full font-bold sm:w-auto bg-[#FF7A18] text-white px-8 py-3 rounded-md hover:bg-[#e66a15]"
+                >
                   Login
                 </Button>
               </div>
