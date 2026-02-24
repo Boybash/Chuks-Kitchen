@@ -1,17 +1,41 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🍳 Chuks Kitchen – Food Delivery & Ordering System
+Chuks Kitchen is a modern, high-performance web application built for seamless food ordering. It features a fully responsive shopping cart, dynamic quantity management, and a robust validation system for user onboarding.
 
-Currently, two official plugins are available:
+🚀 Live Demo
+https://chuks-kitchen.netlify.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✨ Features
 
-## React Compiler
+🛒 Dynamic Shopping Cart
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Real-time Calculations: Automatic subtotal and grand total updates using high-precision currency formatting (₦).
 
-## Expanding the ESLint configuration
+Quantity Control: Smooth increment/decrement logic with safety checks to prevent negative values.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Chuks-Kitchen
+🛡️ Secure Onboarding
+
+Centralized Validation: Powered by Yup and a custom asynchronous helper (validateForm) to keep components clean and DRY.
+
+Form Data Management: Uses a universal state handler for complex forms (Signup/Login), supporting text, email, and checkboxes with a single function.
+
+📱 Responsive Design
+
+Mobile-First Approach: Built with Tailwind CSS, ensuring a "Pixel Perfect" experience from 320px screens up to 4K displays.
+
+Inter Font Integration: Professional typography for enhanced readability.
+
+🛠️ Tech Stack
+
+Framework: React.js
+
+Styling: Tailwind CSS
+
+State Management: React Context API
+
+Form Validation: Yup
+
+Routing: React Router v7
+
+Icons/UI: Custom SVG & Inter Typography
