@@ -1,33 +1,39 @@
+import jollof from "../../assets/Jollof.png";
+import poundedyam from "../../assets/poundedyam.png";
+import grills from "../../assets/grills.png";
+import snacks from "../../assets/snacks.png";
+import swallow from "../../assets/swallow.png";
+
 const popular = [
   {
     id: 1,
     name: "Jollof Delights",
-    Image: "src/assets/Jollof.png",
+    Image: jollof,
   },
   {
     id: 2,
     name: "Pounded Yam & Egusi Soup",
-    Image: "src/assets/poundedyam.png",
+    Image: poundedyam,
   },
   {
     id: 3,
     name: "Grills & BBQ",
-    Image: "src/assets/grills.png",
+    Image: grills,
   },
   {
     id: 4,
     name: "Sweet Treats",
-    Image: "src/assets/snacks.png",
+    Image: snacks,
   },
   {
     id: 5,
     name: "swallow & Soups",
-    Image: "src/assets/swallow.png",
+    Image: swallow,
   },
   {
     id: 6,
     name: "Jollof Delights",
-    Image: "src/assets/grills.png",
+    Image: grills,
   },
 ];
 

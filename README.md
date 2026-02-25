@@ -4,7 +4,7 @@
 Chuks Kitchen is a modern, high-performance web application built for seamless food ordering. It features a fully responsive shopping cart, dynamic quantity management, and a robust validation system for user onboarding.
 
 🚀 Live Demo
-https://chuks-kitchen.netlify.app
+https://chuks-kitchens.netlify.app
 
 ✨ Features
 

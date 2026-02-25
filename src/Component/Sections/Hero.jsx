@@ -3,6 +3,7 @@ import Button from "../UI/button";
 import Search from "../../assets/search-sm.png";
 import { SearchContext } from "../Context/SearchContext";
 import { useContext } from "react";
+import welcomeImage from "../../assets/Welcome.png";
 
 export default function Hero() {
   const { setSearchTerm } = useContext(SearchContext);
@@ -12,7 +13,7 @@ export default function Hero() {
   }
 
   return (
-    <div className="bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url('src/assets/Welcome.png')] bg-cover bg-center w-full h-[600px] md:h-[941px] relative flex items-center">
+    <div className="bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url(/Welcome.png)] bg-cover bg-center w-full h-[600px] md:h-[941px] relative flex items-center">
       <div className="flex flex-col justify-center items-start font-bold text-white text-left gap-6 px-6 md:ml-[48px] w-full max-w-7xl mx-auto">
         <h1 className="text-[32px] md:text-[48px] font-bold w-full md:w-[650px] leading-tight">
           The Heart of Nigerian Home Cooking
