@@ -3,7 +3,7 @@ import Button from "../UI/button";
 
 export default function Intro() {
   return (
-    <div className="bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url('src/assets/beansbg.png')] bg-cover bg-center w-full min-h-[500px] md:h-[610px] flex items-center">
+    <div className="bg-[linear-gradient(to_bottom,rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url(/beansbg.png)] bg-cover bg-center w-full min-h-[500px] md:h-[610px] flex items-center">
       <div className="flex flex-col justify-center items-start font-bold text-white text-left gap-6 px-6 md:ml-[48px] max-w-7xl">
         <h1 className="text-[32px] md:text-[48px] font-extrabold w-full md:max-w-[1000px] leading-tight">
           Introducing Our New Menu Additions!

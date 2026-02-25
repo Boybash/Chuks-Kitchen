@@ -15,7 +15,7 @@ export default function WelcomePage() {
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center font-Inter bg-[#F3F4F6]">
-      <div className="bg-[url('/src/assets/loginimage.png')] bg-cover bg-center w-[50%] h-screen relative hidden lg:block"></div>
+      <div className="bg-[url(/loginimage.png)] bg-cover bg-center w-[50%] h-screen relative hidden lg:block"></div>
 
       <div className="flex-1 min-h-screen flex flex-col p-4 sm:p-8 md:p-12">
         <div className="flex justify-between items-center w-full mb-12 max-w-2xl mx-auto">

@@ -5,7 +5,7 @@ import Facebook from "../../assets/Facebook.png";
 import mailicon from "../../assets/mailicon.svg";
 import lockicon from "../../assets/lockicon.svg";
 import eyeicons from "../../assets/eyeicons.png";
-import eyeicons2 from "../../assets/eyeicons2.png"
+import eyeicons2 from "../../assets/eyeicons2.png";
 import Phoneicon from "../../assets/phoneicon.png";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router";
@@ -14,30 +14,30 @@ import { useNavigate } from "react-router";
 
 export default function SignupPage() {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
     password: "",
     confirmPassword: "",
     terms: "",
-  })
-  const [errors, setErrors] = useState({})
-   const [showPasword, setShowPassword] = useState(false);
+  });
+  const [errors, setErrors] = useState({});
+  const [showPasword, setShowPassword] = useState(false);
 
   const handleSignUp = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await signupSchema.validate(formData, {abortEarly: false})
-      navigate("/welcome")
+      await signupSchema.validate(formData, { abortEarly: false });
+      navigate("/welcome");
     } catch (err) {
-      const validationsError = {}
+      const validationsError = {};
       err.inner.forEach((error) => {
-        validationsError[error.path] = error.message
-      })
-      setErrors(validationsError)
+        validationsError[error.path] = error.message;
+      });
+      setErrors(validationsError);
     }
-  }
+  };
 
   function togglePasswordVisibility() {
     setShowPassword(!showPasword);
@@ -50,7 +50,7 @@ export default function SignupPage() {
   return (
     <div className="w-full h-screen flex justify-center items-center overflow-hidden bg-[#F3F4F6]">
       {/* LEFT SIDE: BANNER */}
-      <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url('/src/assets/loginimage.png')] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
+      <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url(/loginimage.png)] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
         <div className="font-Inter flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full px-10">
           <h1 className="text-[48px] font-bold text-white text-center">
             Chuks Kitchen
@@ -73,7 +73,10 @@ export default function SignupPage() {
           </h2>
         </div>
 
-        <form onSubmit={handleSignUp} className="font-Inter w-full max-w-[450px]">
+        <form
+          onSubmit={handleSignUp}
+          className="font-Inter w-full max-w-[450px]"
+        >
           {/* Email */}
           <div className="mb-4">
             <label
@@ -88,7 +91,9 @@ export default function SignupPage() {
                 id="email"
                 placeholder="name@gmail.com"
                 className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
               <img
                 src={mailicon}
@@ -96,7 +101,9 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
             </div>
-            {errors.email && (<p className="text-red-500 text-sm mt-1">{errors.email}</p>)}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Phone */}
@@ -113,7 +120,9 @@ export default function SignupPage() {
                 id="phone"
                 placeholder="+234..."
                 className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
               />
               <img
                 src={Phoneicon}
@@ -121,8 +130,9 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
             </div>
-            {errors.phone && (<p className="text-red-500 text-sm mt-1">{errors.phone}</p>)}
-
+            {errors.phone && (
+              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+            )}
           </div>
 
           {/* Password */}
@@ -135,12 +145,13 @@ export default function SignupPage() {
             </label>
             <div className="relative">
               <input
-              type={`${showPasword ? "text" : "password"}`}
+                type={`${showPasword ? "text" : "password"}`}
                 id="password"
                 placeholder="*******"
                 className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
-
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
               />
               <img
                 src={lockicon}
@@ -154,8 +165,9 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
               />
             </div>
-            {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password}</p>)}
-
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+            )}
           </div>
 
           {/* Confirm Password */}
@@ -168,12 +180,13 @@ export default function SignupPage() {
             </label>
             <div className="relative">
               <input
-                 type={`${showPasword ? "text" : "password"}`}
+                type={`${showPasword ? "text" : "password"}`}
                 id="confirmPassword"
                 placeholder="*******"
                 className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
-
+                onChange={(e) =>
+                  setFormData({ ...formData, confirmPassword: e.target.value })
+                }
               />
               <img
                 src={lockicon}
@@ -181,48 +194,55 @@ export default function SignupPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 opacity-60"
               />
               <img
-               onClick={togglePasswordVisibility}
+                onClick={togglePasswordVisibility}
                 src={`${showPasword ? eyeicons : eyeicons2}`}
                 alt="Toggle"
                 className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
               />
             </div>
-            {errors.confirmPassword && (<p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>)}
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPassword}
+              </p>
+            )}
           </div>
 
           {/* Terms */}
-          <div >
+          <div>
             <div className="flex items-start gap-2">
-            <input
-              type="checkbox"
-              id="terms"
-              className="mt-1 accent-[#FF7A18] h-4 w-4"
-              onChange={(e) => setFormData({...formData, terms: e.target.checked})}
-            />
-            <label
-              htmlFor="terms"
-              className="text-[13px] sm:text-[14px] text-gray-600"
-            >
-              I agree to the{" "}
-              <span className="text-[#1E88E5] cursor-pointer hover:underline">
-                Terms & Conditions
-              </span>{" "}
-              and{" "}
-              <span className="text-[#1E88E5] cursor-pointer hover:underline">
-                Privacy Policy
-              </span>
-            </label>
+              <input
+                type="checkbox"
+                id="terms"
+                className="mt-1 accent-[#FF7A18] h-4 w-4"
+                onChange={(e) =>
+                  setFormData({ ...formData, terms: e.target.checked })
+                }
+              />
+              <label
+                htmlFor="terms"
+                className="text-[13px] sm:text-[14px] text-gray-600"
+              >
+                I agree to the{" "}
+                <span className="text-[#1E88E5] cursor-pointer hover:underline">
+                  Terms & Conditions
+                </span>{" "}
+                and{" "}
+                <span className="text-[#1E88E5] cursor-pointer hover:underline">
+                  Privacy Policy
+                </span>
+              </label>
             </div>
-            {errors.terms && (<p className="text-red-500 text-sm mt-1">{errors.terms}</p>)}
+            {errors.terms && (
+              <p className="text-red-500 text-sm mt-1">{errors.terms}</p>
+            )}
           </div>
 
-
-            <Button
-              type="submit"
-              className="w-full h-[54px] bg-[#FF7A18] text-white font-bold rounded-md hover:bg-[#e66a15] transition duration-300 mt-8"
-            >
-              Continue
-            </Button>
+          <Button
+            type="submit"
+            className="w-full h-[54px] bg-[#FF7A18] text-white font-bold rounded-md hover:bg-[#e66a15] transition duration-300 mt-8"
+          >
+            Continue
+          </Button>
 
           <p className="text-center my-4 text-gray-400 text-sm">
             or continue with

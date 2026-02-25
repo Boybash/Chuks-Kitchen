@@ -3,7 +3,6 @@ import Button from "../UI/button";
 import Search from "../../assets/search-sm.png";
 import { SearchContext } from "../Context/SearchContext";
 import { useContext } from "react";
-import welcomeImage from "../../assets/Welcome.png";
 
 export default function Hero() {
   const { setSearchTerm } = useContext(SearchContext);

@@ -6,36 +6,36 @@ import Facebook from "../../assets/Facebook.png";
 import mailicon from "../../assets/mailicon.svg";
 import lockicon from "../../assets/lockicon.svg";
 import eyeicons from "../../assets/eyeicons.png";
-import eyeicons2 from "../../assets/eyeicons2.png"
+import eyeicons2 from "../../assets/eyeicons2.png";
 import { useEffect } from "react";
 import { loginSchema } from "../Validations/Validations";
 import { useNavigate } from "react-router";
 
 export default function LoginPage() {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-  })
-  const [errors, setErrors] = useState({})
-    const [showPasword, setShowPassword] = useState(false);
+  });
+  const [errors, setErrors] = useState({});
+  const [showPasword, setShowPassword] = useState(false);
 
   const handleContinue = async (e) => {
     e.preventDefault();
     try {
-      await loginSchema.validate(formData, {abortEarly: false})
-      navigate("/")
+      await loginSchema.validate(formData, { abortEarly: false });
+      navigate("/");
     } catch (err) {
-     const validationsError = {}
-     err.inner.forEach((error) => {
-      validationsError[error.path] = error.message
-     })
-     setErrors(validationsError)
+      const validationsError = {};
+      err.inner.forEach((error) => {
+        validationsError[error.path] = error.message;
+      });
+      setErrors(validationsError);
     }
-  }
+  };
 
- function togglePasswordVisibility() {
+  function togglePasswordVisibility() {
     setShowPassword(!showPasword);
   }
 
@@ -45,7 +45,7 @@ export default function LoginPage() {
 
   return (
     <div className="w-full h-screen flex justify-center items-center overflow-hidden bg-[#F3F4F6]">
-      <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url('/src/assets/loginimage.png')] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
+      <div className="bg-[linear-gradient(to_bottom,rgba(255,122,24,0.7),rgba(255,122,24,0.7)),url(/loginimage.png)] bg-cover bg-center w-[50%] h-screen relative hidden lg:block">
         <div className="font-Inter flex flex-col justify-center items-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full px-10">
           <h1 className="text-[48px] font-bold text-white text-center">
             Chuks Kitchen
@@ -67,7 +67,10 @@ export default function LoginPage() {
           </h2>
         </div>
 
-        <form onSubmit={handleContinue} className="font-Inter w-full max-w-[450px]">
+        <form
+          onSubmit={handleContinue}
+          className="font-Inter w-full max-w-[450px]"
+        >
           <div className="mb-4 relative">
             <label htmlFor="email" className="block text-gray-700 mb-2">
               Email or Phone Number
@@ -78,7 +81,9 @@ export default function LoginPage() {
                 id="email"
                 placeholder="name@gmail.com"
                 className="w-full h-[54px] pl-12 pr-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
               <img
                 src={mailicon}
@@ -86,7 +91,9 @@ export default function LoginPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
               />
             </div>
-            {errors.email && (<p className="text-red-500 text-sm mt-1">{errors.email}</p>)}
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           <div className="mb-6">
@@ -99,8 +106,9 @@ export default function LoginPage() {
                 id="password"
                 placeholder="*******"
                 className="w-full h-[54px] pl-12 pr-12 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF7A18]"
-                onChange={(e) => setFormData({...formData, password: e.target.value})}
-
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
               />
               <img
                 src={lockicon}
@@ -108,13 +116,15 @@ export default function LoginPage() {
                 className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
               />
               <img
-               onClick={togglePasswordVisibility}
+                onClick={togglePasswordVisibility}
                 src={`${showPasword ? eyeicons : eyeicons2}`}
                 alt="Eye Icon"
                 className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
               />
             </div>
-            {errors.password && (<p className="text-red-500 text-sm mt-1">{errors.password}</p>)}
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+            )}
             <p className="text-right text-blue-500 mt-2 cursor-pointer text-sm">
               Forgot Password?
             </p>
